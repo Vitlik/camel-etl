@@ -65,7 +65,7 @@ public class MappToWarehouse implements Processor {
         List<Object> newMessage = new ArrayList<Object>(
                 Arrays.asList(factSalesList, dimDateList, dimItemList, dimSupplierList));
         exchange.getIn().setBody(newMessage);
-        exchange.getIn().setBody(dimSupplierList);
+        // exchange.getIn().setBody(dimSupplierList);
 
     }
 

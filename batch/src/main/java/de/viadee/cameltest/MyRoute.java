@@ -24,7 +24,7 @@ public class MyRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        LOGGER.info("Route fuer die Cat-Auftragsgenerierung wird konfiguriert.");
+        LOGGER.info("Start route.");
 
         BindyCsvDataFormat bindy = new BindyCsvDataFormat(Warehouse_and_Retail_Sales.class);
 
@@ -34,7 +34,7 @@ public class MyRoute extends RouteBuilder {
                 // .to("direct:toPersisting");
                 //
                 // from("direct:toPersisting")
-                // .process(writeToDB);
-                .to("jpa:de.viadee.cameltest.Entities.Target.dim_supplier"); // some problems with EntityManager camel
+                .process(writeToDB);
+        // .to("jpa:de.viadee.cameltest.Entities.Target.dim_supplier"); // some problems with EntityManager camel
     }
 }

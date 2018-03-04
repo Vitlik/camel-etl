@@ -1,43 +1,43 @@
 package de.viadee.cameltest.Entities.Source;
 
-import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
-import org.apache.camel.dataformat.bindy.annotation.DataField;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.NamedQuery;
 
-@CsvRecord(separator = ",", skipFirstLine = true)
-public class Warehouse_and_Retail_Sales {
+@Entity
+@IdClass(warehouse_and_retail_salesId.class)
+public class warehouse_and_retail_sales {
 
-    @DataField(pos = 1)
+    @Id
     private int year;
 
-    @DataField(pos = 2)
+    @Id
     private int month;
 
-    @DataField(pos = 3)
+    @Id
     private String supplier;
 
-    @DataField(pos = 4)
+    @Id
     private String item_code;
 
-    @DataField(pos = 5)
+    @Id
     private String item_description;
 
-    @DataField(pos = 6)
+    @Id
     private String item_type;
 
-    @DataField(pos = 7)
     private double retail_sales;
 
-    @DataField(pos = 8)
     private double retail_transfers;
 
-    @DataField(pos = 9)
     private double warehouse_sales;
 
-    public Warehouse_and_Retail_Sales() {
+    public warehouse_and_retail_sales() {
 
     }
 
-    public Warehouse_and_Retail_Sales(int year, int month, String supplier, String item_code, String item_description,
+    public warehouse_and_retail_sales(int year, int month, String supplier, String item_code, String item_description,
             String item_type, double retail_sales, double retail_transfers, double warehouse_sales) {
         this.year = year;
         this.month = month;

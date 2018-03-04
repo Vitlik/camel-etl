@@ -39,7 +39,7 @@ public class WriteToDB implements Processor {
         LOGGER.info("--- Write to DB ---");
 
         List<Object> objectList = (List<Object>) exchange.getIn().getBody();
-        List<fact_sales> fullDataList = (List<fact_sales>) objectList.get(0);
+        List<fact_sales> fact_List = (List<fact_sales>) objectList.get(0);
         List<dim_date> dimDateList = (List<dim_date>) objectList.get(1);
         List<dim_item> dimItemList = (List<dim_item>) objectList.get(2);
         List<dim_supplier> dimSupplierList = (List<dim_supplier>) objectList.get(3);
@@ -56,7 +56,7 @@ public class WriteToDB implements Processor {
             supplierLoader.load(item);
         });
 
-        fullDataList.forEach(item -> {
+        fact_List.forEach(item -> {
             factLoader.load(item);
         });
     }
