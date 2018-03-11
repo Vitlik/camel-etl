@@ -54,19 +54,21 @@ public class Application extends SpringBootServletInitializer {
         @Override
         public void configure() throws Exception {
 
-            from("jpa:de.viadee.cameltest.Entities.Source.warehouse_and_retail_sales"
+            from("jpa:de.viadee.cameltest.Entities.Source.WarehouseAndRetailSales"
                     + "?consumeLockEntity=false"
-                    // + "&consumer.delay=100"
                     + "&maxMessagesPerPoll=100"
                     + "&consumeDelete=false")
                             .routeId("sales-dim-mapping")
+                            .log("Started route.")
+
                             .process(mapToWarehouse)
                             .process(dateDimProcess)
                             .process(itemDimProcess)
                             .process(supplierDimProcess)
                             .process(writeFacts)
 
-                            .log("Processed ${body.year} ${body.month} ${body.supplier} ${body.item_code} ${body.item_type} ${body.item_description} ");
+                            .log("Processed ${body.year} ${body.month} ${body.supplier} ${body.itemCode} ${body.itemType} ${body.itemDescription} ")
+                            .log("Finished route.");
         }
     }
 }

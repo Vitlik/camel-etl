@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Entities.Source.warehouse_and_retail_sales;
-import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
+import de.viadee.cameltest.Entities.Source.WarehouseAndRetailSales;
+import de.viadee.cameltest.Entities.intermediate.FullDataWithIds;
 
 @Component
 public class MappToWarehouse implements Processor {
@@ -17,9 +17,9 @@ public class MappToWarehouse implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
 
-        warehouse_and_retail_sales rawSale = exchange.getIn().getBody(warehouse_and_retail_sales.class);
+        WarehouseAndRetailSales rawSale = exchange.getIn().getBody(WarehouseAndRetailSales.class);
 
-        fullDataWithIDs idData = new fullDataWithIDs();
+        FullDataWithIds idData = new FullDataWithIds();
 
         BeanUtils.copyProperties(rawSale, idData);
 

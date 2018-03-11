@@ -37,7 +37,6 @@ public class SupplierDimProcessList implements Processor {
             } else {
                 dimSupplier = new DimSupplier(row.getSupplier());
                 supplierRepo.saveAndFlush(dimSupplier);
-
                 row.setSupplierId(dimSupplier.getId());
             }
         }

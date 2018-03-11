@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Entities.Target.dim_item;
-import de.viadee.cameltest.Entities.Target.Repos.dim_itemRepository;
-import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
+import de.viadee.cameltest.Entities.Target.DimItem;
+import de.viadee.cameltest.Entities.Target.Repos.DimItemRepository;
+import de.viadee.cameltest.Entities.intermediate.FullDataWithIds;
 
 @Component
 public class ItemDimProcess implements Processor {
@@ -18,7 +18,7 @@ public class ItemDimProcess implements Processor {
     private static final Logger LOGGER = Logger.getLogger(ItemDimProcess.class);
 
     @Inject
-    private dim_itemRepository itemRepo;
+    private DimItemRepository itemRepo;
 
     @Inject
     JdbcTemplate jdbcTemplate;
@@ -26,31 +26,19 @@ public class ItemDimProcess implements Processor {
     @Override
     public void process(Exchange exchange) {
 
-        fullDataWithIDs row = exchange.getIn().getBody(fullDataWithIDs.class);
+        FullDataWithIds row = exchange.getIn().getBody(FullDataWithIds.class);
 
-        dim_item dimItem = itemRepo.findByTypeAndCodeAndDescription(row.getItem_type(), row.getItem_code(),
-                row.getItem_description());
+        DimItem dimItem = itemRepo.findByTypeAndCodeAndDescription(row.getItemType(), row.getItemCode(),
+                row.getItemDescription());
 
         if (dimItem != null) {
-            row.setItem_id(dimItem.getId());
+            row.setItemId(dimItem.getId());
         } else {
-            row.setItem_id(createItemEntry(row));
+            dimItem = new DimItem(row.getItemType(), row.getItemCode(), row.getItemDescription());
+            itemRepo.saveAndFlush(dimItem);
+            row.setItemId(dimItem.getId());
         }
 
         exchange.getOut().setBody(row);
-    }
-
-    private Integer createItemEntry(fullDataWithIDs row) {
-        Integer lastId = jdbcTemplate.queryForObject("Select max(id) from dim_item", Integer.class);
-
-        if (lastId == null) {
-            lastId = 0;
-        }
-
-        dim_item dimItem = new dim_item(lastId + 1, row.getItem_type(), row.getItem_code(), row.getItem_description());
-
-        itemRepo.saveAndFlush(dimItem);
-
-        return lastId + 1;
     }
 }

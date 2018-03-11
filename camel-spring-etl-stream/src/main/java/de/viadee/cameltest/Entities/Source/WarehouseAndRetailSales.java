@@ -1,47 +1,58 @@
-package de.viadee.cameltest.Entities.intermediate;
+package de.viadee.cameltest.Entities.Source;
 
-public class FullDataWithIds {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
-    public int year;
+@Entity
+@IdClass(WarehouseAndRetailSalesId.class)
+@Table(name = "warehouse_and_retail_sales", schema = "mydb")
+public class WarehouseAndRetailSales {
 
-    public int month;
+    @Id
+    private int year;
 
-    public long dateId;
+    @Id
+    private int month;
 
-    public String supplier;
+    @Id
+    private String supplier;
 
-    public long supplierId;
+    @Id
+    @Column(name = "item_code")
+    private String itemCode;
 
-    public String itemCode;
+    @Id
+    @Column(name = "item_description")
+    private String itemDescription;
 
-    public String itemDescription;
+    @Id
+    @Column(name = "item_type")
+    private String itemType;
 
-    public String itemType;
+    @Column(name = "retail_sales")
+    private double retailSales;
 
-    public long itemId;
+    @Column(name = "retail_transfers")
+    private double retailTransfers;
 
-    public double retailSales;
+    @Column(name = "warehouse_sales")
+    private double warehouseSales;
 
-    public double retailTransfers;
+    public WarehouseAndRetailSales() {
 
-    public double warehouseSales;
-
-    public FullDataWithIds() {
     }
 
-    public FullDataWithIds(int year, int month, long dateId, String supplier, long supplierId, String itemCode,
-            String itemDescription, String itemType, long itemId, double retailSales, double retailTransfers,
-            double warehouseSales) {
-        super();
+    public WarehouseAndRetailSales(int year, int month, String supplier, String itemCode, String itemDescription,
+            String itemType, double retailSales, double retailTransfers, double warehouseSales) {
         this.year = year;
         this.month = month;
-        this.dateId = dateId;
         this.supplier = supplier;
-        this.supplierId = supplierId;
         this.itemCode = itemCode;
         this.itemDescription = itemDescription;
         this.itemType = itemType;
-        this.itemId = itemId;
         this.retailSales = retailSales;
         this.retailTransfers = retailTransfers;
         this.warehouseSales = warehouseSales;
@@ -63,28 +74,12 @@ public class FullDataWithIds {
         this.month = month;
     }
 
-    public long getDateId() {
-        return dateId;
-    }
-
-    public void setDateId(long dateId) {
-        this.dateId = dateId;
-    }
-
     public String getSupplier() {
         return supplier;
     }
 
     public void setSupplier(String supplier) {
         this.supplier = supplier;
-    }
-
-    public long getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(long supplierId) {
-        this.supplierId = supplierId;
     }
 
     public String getItemCode() {
@@ -111,14 +106,6 @@ public class FullDataWithIds {
         this.itemType = itemType;
     }
 
-    public long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
-    }
-
     public double getRetailSales() {
         return retailSales;
     }
@@ -142,5 +129,4 @@ public class FullDataWithIds {
     public void setWarehouseSales(double warehouseSales) {
         this.warehouseSales = warehouseSales;
     }
-
 }

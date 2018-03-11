@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Entities.Target.dim_supplier;
-import de.viadee.cameltest.Entities.Target.Repos.dim_supplierRepository;
-import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
+import de.viadee.cameltest.Entities.Target.DimSupplier;
+import de.viadee.cameltest.Entities.Target.Repos.DimSupplierRepository;
+import de.viadee.cameltest.Entities.intermediate.FullDataWithIds;
 
 @Component
 public class SupplierDimProcess implements Processor {
@@ -18,7 +18,7 @@ public class SupplierDimProcess implements Processor {
     private static final Logger LOGGER = Logger.getLogger(SupplierDimProcess.class);
 
     @Inject
-    private dim_supplierRepository supplierRepo;
+    private DimSupplierRepository supplierRepo;
 
     @Inject
     JdbcTemplate jdbcTemplate;
@@ -26,30 +26,18 @@ public class SupplierDimProcess implements Processor {
     @Override
     public void process(Exchange exchange) {
 
-        fullDataWithIDs row = exchange.getIn().getBody(fullDataWithIDs.class);
+        FullDataWithIds row = exchange.getIn().getBody(FullDataWithIds.class);
 
-        dim_supplier dimSupplier = supplierRepo.findByName(row.getSupplier());
+        DimSupplier dimSupplier = supplierRepo.findByName(row.getSupplier());
 
         if (dimSupplier != null) {
-            row.setSupplier_id(dimSupplier.getId());
+            row.setSupplierId(dimSupplier.getId());
         } else {
-            row.setSupplier_id(createSupplierEntry(row));
+            dimSupplier = new DimSupplier(row.getSupplier());
+            supplierRepo.saveAndFlush(dimSupplier);
+            row.setSupplierId(dimSupplier.getId());
         }
 
         exchange.getOut().setBody(row);
-    }
-
-    private Integer createSupplierEntry(fullDataWithIDs row) {
-        Integer lastId = jdbcTemplate.queryForObject("Select max(id) from dim_supplier", Integer.class);
-
-        if (lastId == null) {
-            lastId = 0;
-        }
-
-        dim_supplier dimSupplier = new dim_supplier(lastId + 1, row.getSupplier());
-
-        supplierRepo.save(dimSupplier);
-
-        return lastId + 1;
     }
 }

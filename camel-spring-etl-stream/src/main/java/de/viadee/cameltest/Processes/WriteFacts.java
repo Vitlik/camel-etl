@@ -6,12 +6,11 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Entities.Target.fact_sales;
-import de.viadee.cameltest.Entities.Target.Repos.fact_salesRepository;
-import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
+import de.viadee.cameltest.Entities.Target.FactSales;
+import de.viadee.cameltest.Entities.Target.Repos.FactSalesRepository;
+import de.viadee.cameltest.Entities.intermediate.FullDataWithIds;
 
 @Component
 public class WriteFacts implements Processor {
@@ -19,28 +18,24 @@ public class WriteFacts implements Processor {
     private static final Logger LOGGER = Logger.getLogger(WriteFacts.class);
 
     @Inject
-    private fact_salesRepository factRepo;
-
-    @Inject
-    JdbcTemplate jdbcTemplate;
+    private FactSalesRepository factRepo;
 
     @Override
     public void process(Exchange exchange) {
 
-        fullDataWithIDs saleWithIds = exchange.getIn().getBody(fullDataWithIDs.class);
+        FullDataWithIds saleWithIds = exchange.getIn().getBody(FullDataWithIds.class);
 
-        // if fact already exists, skip
-        if (jdbcTemplate.queryForObject(
-                "SELECT date_id FROM fact_sales WHERE date_id = ? AND supplier_id = ? AND item_id = ?",
-                new Object[] { saleWithIds.getDate_id(), saleWithIds.getSupplier_id(), saleWithIds.getItem_id() },
-                Integer.class) != null) {
+        FactSales factDataDB = factRepo.findByDateIdAndSupplierIdAndItemId(saleWithIds.getDateId(),
+                saleWithIds.getSupplierId(), saleWithIds.getItemId());
+
+        FactSales factData = new FactSales();
+
+        BeanUtils.copyProperties(saleWithIds, factData);
+
+        if (factDataDB != null) {
             LOGGER.debug("Fact already existing. ");
             return;
         }
-
-        fact_sales factData = new fact_sales();
-
-        BeanUtils.copyProperties(saleWithIds, factData);
 
         factRepo.saveAndFlush(factData);
     }
