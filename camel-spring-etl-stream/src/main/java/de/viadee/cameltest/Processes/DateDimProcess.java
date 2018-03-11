@@ -13,9 +13,9 @@ import de.viadee.cameltest.Entities.Target.Repos.dim_dateRepository;
 import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
 
 @Component
-public class DateProcess implements Processor {
+public class DateDimProcess implements Processor {
 
-    private static final Logger LOGGER = Logger.getLogger(DateProcess.class);
+    private static final Logger LOGGER = Logger.getLogger(DateDimProcess.class);
 
     @Inject
     private dim_dateRepository dateRepo;

@@ -13,9 +13,9 @@ import de.viadee.cameltest.Entities.Target.Repos.dim_supplierRepository;
 import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
 
 @Component
-public class SupplierProcess implements Processor {
+public class SupplierDimProcess implements Processor {
 
-    private static final Logger LOGGER = Logger.getLogger(SupplierProcess.class);
+    private static final Logger LOGGER = Logger.getLogger(SupplierDimProcess.class);
 
     @Inject
     private dim_supplierRepository supplierRepo;

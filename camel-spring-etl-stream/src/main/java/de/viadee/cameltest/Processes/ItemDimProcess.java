@@ -13,9 +13,9 @@ import de.viadee.cameltest.Entities.Target.Repos.dim_itemRepository;
 import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
 
 @Component
-public class ItemProcess implements Processor {
+public class ItemDimProcess implements Processor {
 
-    private static final Logger LOGGER = Logger.getLogger(ItemProcess.class);
+    private static final Logger LOGGER = Logger.getLogger(ItemDimProcess.class);
 
     @Inject
     private dim_itemRepository itemRepo;

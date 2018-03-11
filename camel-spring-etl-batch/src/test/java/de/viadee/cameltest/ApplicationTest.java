@@ -12,6 +12,8 @@
  */
 package de.viadee.cameltest;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +31,8 @@ public class ApplicationTest {
 
     @Test
     public void appTest() {
+
+        assertEquals("", "");
 
     }
 }

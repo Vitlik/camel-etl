@@ -20,10 +20,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Processes.DateProcess;
-import de.viadee.cameltest.Processes.ItemProcess;
+import de.viadee.cameltest.Processes.DateDimProcess;
+import de.viadee.cameltest.Processes.ItemDimProcess;
 import de.viadee.cameltest.Processes.MappToWarehouse;
-import de.viadee.cameltest.Processes.SupplierProcess;
+import de.viadee.cameltest.Processes.SupplierDimProcess;
 import de.viadee.cameltest.Processes.WriteFacts;
 
 @SpringBootApplication
@@ -37,16 +37,16 @@ public class Application extends SpringBootServletInitializer {
     public class MyRoute extends RouteBuilder {
 
         @Inject
-        private MappToWarehouse mappToWarehouse;
+        private MappToWarehouse mapToWarehouse;
 
         @Inject
-        private DateProcess dateProcess;
+        private DateDimProcess dateDimProcess;
 
         @Inject
-        private ItemProcess itemProcess;
+        private ItemDimProcess itemDimProcess;
 
         @Inject
-        private SupplierProcess supplierProcess;
+        private SupplierDimProcess supplierDimProcess;
 
         @Inject
         private WriteFacts writeFacts;
@@ -60,13 +60,13 @@ public class Application extends SpringBootServletInitializer {
                     + "&maxMessagesPerPoll=100"
                     + "&consumeDelete=false")
                             .routeId("sales-dim-mapping")
-                            .process(mappToWarehouse)
-                            .process(dateProcess)
-                            .process(itemProcess)
-                            .process(supplierProcess)
+                            .process(mapToWarehouse)
+                            .process(dateDimProcess)
+                            .process(itemDimProcess)
+                            .process(supplierDimProcess)
                             .process(writeFacts)
 
-                            .log("Written ${body.year} ${body.month} ${body.supplier} ${body.item_code} ${body.item_type} ${body.item_description} ");
+                            .log("Processed ${body.year} ${body.month} ${body.supplier} ${body.item_code} ${body.item_type} ${body.item_description} ");
         }
     }
 }
