@@ -1,16 +1,20 @@
 package de.viadee.cameltest.Processes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import de.viadee.cameltest.Entities.Source.warehouse_and_retail_sales;
+import de.viadee.cameltest.Entities.Source.Warehouse_and_Retail_Sales;
 import de.viadee.cameltest.Entities.Target.dim_date;
 import de.viadee.cameltest.Entities.Target.dim_item;
 import de.viadee.cameltest.Entities.Target.dim_supplier;
+import de.viadee.cameltest.Entities.Target.fact_sales;
 import de.viadee.cameltest.Entities.intermediate.fullDataWithIDs;
 
 @Component
@@ -24,37 +28,37 @@ public class MappToWarehouse implements Processor {
         LOGGER.info("--- Execute Dimension Mapping ---");
 
         @SuppressWarnings("unchecked")
-        List<warehouse_and_retail_sales> rawSales = (List<warehouse_and_retail_sales>) exchange
+        List<Warehouse_and_Retail_Sales> csvList = (List<Warehouse_and_Retail_Sales>) exchange
                 .getIn().getBody();
 
-        // List<fullDataWithIDs> fullDataList = new ArrayList<>();
-        //
-        // csvList.forEach(row -> {
-        // fullDataWithIDs newRow = new fullDataWithIDs();
-        // BeanUtils.copyProperties(row, newRow);
-        // fullDataList.add(newRow);
-        // });
-        //
-        // List<dim_date> dimDateList = new ArrayList<dim_date>();
-        // List<dim_item> dimItemList = new ArrayList<dim_item>();
-        // List<dim_supplier> dimSupplierList = new ArrayList<dim_supplier>();
-        // List<fact_sales> factSalesList = new ArrayList<fact_sales>();
-        //
-        // fullDataList.forEach(row -> {
-        // extractDate(row, dimDateList);
-        // extractItem(row, dimItemList);
-        // extractSupplier(row, dimSupplierList);
-        // });
-        //
-        // fullDataList.forEach(row -> {
-        // fact_sales newRow = new fact_sales();
-        // BeanUtils.copyProperties(row, newRow);
-        // factSalesList.add(newRow);
-        // });
-        //
-        // List<Object> newMessage = new ArrayList<Object>(
-        // Arrays.asList(factSalesList, dimDateList, dimItemList, dimSupplierList));
-        // exchange.getIn().setBody(newMessage);
+        List<fullDataWithIDs> fullDataList = new ArrayList<>();
+
+        csvList.forEach(row -> {
+            fullDataWithIDs newRow = new fullDataWithIDs();
+            BeanUtils.copyProperties(row, newRow);
+            fullDataList.add(newRow);
+        });
+
+        List<dim_date> dimDateList = new ArrayList<dim_date>();
+        List<dim_item> dimItemList = new ArrayList<dim_item>();
+        List<dim_supplier> dimSupplierList = new ArrayList<dim_supplier>();
+        List<fact_sales> factSalesList = new ArrayList<fact_sales>();
+
+        fullDataList.forEach(row -> {
+            extractDate(row, dimDateList);
+            extractItem(row, dimItemList);
+            extractSupplier(row, dimSupplierList);
+        });
+
+        fullDataList.forEach(row -> {
+            fact_sales newRow = new fact_sales();
+            BeanUtils.copyProperties(row, newRow);
+            factSalesList.add(newRow);
+        });
+
+        List<Object> newMessage = new ArrayList<Object>(
+                Arrays.asList(factSalesList, dimDateList, dimItemList, dimSupplierList));
+        exchange.getIn().setBody(newMessage);
         // exchange.getIn().setBody(dimSupplierList);
 
     }
