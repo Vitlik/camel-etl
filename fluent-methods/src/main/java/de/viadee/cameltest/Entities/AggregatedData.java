@@ -8,27 +8,26 @@ public class AggregatedData {
 
     public String supplier;
 
-    public String item_type;
+    public String itemType;
 
-    public double retail_sales_sum;
+    public double retailSalesSum;
 
-    public double retail_transfers_avg;
+    public double retailTransfersAvg;
 
-    public double warehouse_sales_max;
+    public double warehouseSalesMax;
 
     public AggregatedData() {
     }
 
-    public AggregatedData(int year, int month, String supplier, String item_type, double retail_sales_sum,
-            double retail_transfers_avg, double warehouse_sales_max) {
-        super();
+    public AggregatedData(int year, int month, String supplier, String itemType, double retailSalesSum,
+            double retailTransfersAvg, double warehouseSalesMax) {
         this.year = year;
         this.month = month;
         this.supplier = supplier;
-        this.item_type = item_type;
-        this.retail_sales_sum = retail_sales_sum;
-        this.retail_transfers_avg = retail_transfers_avg;
-        this.warehouse_sales_max = warehouse_sales_max;
+        this.itemType = itemType;
+        this.retailSalesSum = retailSalesSum;
+        this.retailTransfersAvg = retailTransfersAvg;
+        this.warehouseSalesMax = warehouseSalesMax;
     }
 
     public int getYear() {
@@ -55,51 +54,51 @@ public class AggregatedData {
         this.supplier = supplier;
     }
 
-    public String getItem_type() {
-        return item_type;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setItem_type(String item_type) {
-        this.item_type = item_type;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
-    public double getRetail_sales_sum() {
-        return retail_sales_sum;
+    public double getRetailSalesSum() {
+        return retailSalesSum;
     }
 
-    public void setRetail_sales_sum(double retail_sales_sum) {
-        this.retail_sales_sum = retail_sales_sum;
+    public void setRetailSalesSum(double retailSalesSum) {
+        this.retailSalesSum = retailSalesSum;
     }
 
-    public double getRetail_transfers_avg() {
-        return retail_transfers_avg;
+    public double getRetailTransfersAvg() {
+        return retailTransfersAvg;
     }
 
-    public void setRetail_transfers_avg(double retail_transfers_avg) {
-        this.retail_transfers_avg = retail_transfers_avg;
+    public void setRetailTransfersAvg(double retailTransfersAvg) {
+        this.retailTransfersAvg = retailTransfersAvg;
     }
 
-    public double getWarehouse_sales_max() {
-        return warehouse_sales_max;
+    public double getWarehouseSalesMax() {
+        return warehouseSalesMax;
     }
 
-    public void setWarehouse_sales_max(double warehouse_sales_max) {
-        this.warehouse_sales_max = warehouse_sales_max;
+    public void setWarehouseSalesMax(double warehouseSalesMax) {
+        this.warehouseSalesMax = warehouseSalesMax;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((item_type == null) ? 0 : item_type.hashCode());
+        result = prime * result + ((itemType == null) ? 0 : itemType.hashCode());
         result = prime * result + month;
         long temp;
-        temp = Double.doubleToLongBits(retail_sales_sum);
+        temp = Double.doubleToLongBits(retailSalesSum);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(retail_transfers_avg);
+        temp = Double.doubleToLongBits(retailTransfersAvg);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + ((supplier == null) ? 0 : supplier.hashCode());
-        temp = Double.doubleToLongBits(warehouse_sales_max);
+        temp = Double.doubleToLongBits(warehouseSalesMax);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + year;
         return result;
@@ -114,23 +113,23 @@ public class AggregatedData {
         if (getClass() != obj.getClass())
             return false;
         AggregatedData other = (AggregatedData) obj;
-        if (item_type == null) {
-            if (other.item_type != null)
+        if (itemType == null) {
+            if (other.itemType != null)
                 return false;
-        } else if (!item_type.equals(other.item_type))
+        } else if (!itemType.equals(other.itemType))
             return false;
         if (month != other.month)
             return false;
-        if (Double.doubleToLongBits(retail_sales_sum) != Double.doubleToLongBits(other.retail_sales_sum))
+        if (Double.doubleToLongBits(retailSalesSum) != Double.doubleToLongBits(other.retailSalesSum))
             return false;
-        if (Double.doubleToLongBits(retail_transfers_avg) != Double.doubleToLongBits(other.retail_transfers_avg))
+        if (Double.doubleToLongBits(retailTransfersAvg) != Double.doubleToLongBits(other.retailTransfersAvg))
             return false;
         if (supplier == null) {
             if (other.supplier != null)
                 return false;
         } else if (!supplier.equals(other.supplier))
             return false;
-        if (Double.doubleToLongBits(warehouse_sales_max) != Double.doubleToLongBits(other.warehouse_sales_max))
+        if (Double.doubleToLongBits(warehouseSalesMax) != Double.doubleToLongBits(other.warehouseSalesMax))
             return false;
         if (year != other.year)
             return false;

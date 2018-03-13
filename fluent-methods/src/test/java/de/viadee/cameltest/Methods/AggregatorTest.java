@@ -35,13 +35,14 @@ public class AggregatorTest {
 
         try {
             @SuppressWarnings("unchecked")
-            List<AggregatedData> myAggregatedData = (List<AggregatedData>) aggr.setSource(sourceObjectList)
+            List<AggregatedData> myAggregatedData = (List<AggregatedData>) aggr
+                    .setSource(sourceObjectList)
                     .setTarget(AggregatedData.class.getName())
-                    .groupBy("year").groupBy("month").groupBy("item_type")
+                    .groupBy("year").groupBy("month").groupBy("itemType")
                     .setAttribute("supplier").setOperation("first").setAttributeTarget("supplier")
-                    .setAttribute("retail_sales").setOperation("sum").setAttributeTarget("retail_sales_sum")
-                    .setAttribute("retail_transfers").setOperation("avg").setAttributeTarget("retail_transfers_avg")
-                    .setAttribute("warehouse_sales").setOperation("max").setAttributeTarget("warehouse_sales_max")
+                    .setAttribute("retailSales").setOperation("sum").setAttributeTarget("retailSalesSum")
+                    .setAttribute("retailTransfers").setOperation("avg").setAttributeTarget("retailTransfersAvg")
+                    .setAttribute("warehouseSales").setOperation("max").setAttributeTarget("warehouseSalesMax")
                     .run();
 
             assertEquals(myAggregatedData.size(), 3);

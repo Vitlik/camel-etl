@@ -8,33 +8,33 @@ public class CsvData {
 
     public String supplier;
 
-    public String item_code;
+    public String itemCode;
 
-    public String item_description;
+    public String itemDescription;
 
-    public String item_type;
+    public String itemType;
 
-    public double retail_sales;
+    public double retailSales;
 
-    public double retail_transfers;
+    public double retailTransfers;
 
-    public double warehouse_sales;
+    public double warehouseSales;
 
     public CsvData() {
     }
 
-    public CsvData(int year, int month, String supplier, String item_code, String item_description, String item_type,
-            double retail_sales, double retail_transfers, double warehouse_sales) {
+    public CsvData(int year, int month, String supplier, String itemCode, String itemDescription, String itemType,
+            double retailSales, double retailTransfers, double warehouseSales) {
         super();
         this.year = year;
         this.month = month;
         this.supplier = supplier;
-        this.item_code = item_code;
-        this.item_description = item_description;
-        this.item_type = item_type;
-        this.retail_sales = retail_sales;
-        this.retail_transfers = retail_transfers;
-        this.warehouse_sales = warehouse_sales;
+        this.itemCode = itemCode;
+        this.itemDescription = itemDescription;
+        this.itemType = itemType;
+        this.retailSales = retailSales;
+        this.retailTransfers = retailTransfers;
+        this.warehouseSales = warehouseSales;
     }
 
     public int getYear() {
@@ -61,52 +61,52 @@ public class CsvData {
         this.supplier = supplier;
     }
 
-    public String getItem_code() {
-        return item_code;
+    public String getItemCode() {
+        return itemCode;
     }
 
-    public void setItem_code(String item_code) {
-        this.item_code = item_code;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
-    public String getItem_description() {
-        return item_description;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setItem_description(String item_description) {
-        this.item_description = item_description;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    public String getItem_type() {
-        return item_type;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setItem_type(String item_type) {
-        this.item_type = item_type;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
-    public double getRetail_sales() {
-        return retail_sales;
+    public double getRetailSales() {
+        return retailSales;
     }
 
-    public void setRetail_sales(double retail_sales) {
-        this.retail_sales = retail_sales;
+    public void setRetailSales(double retailSales) {
+        this.retailSales = retailSales;
     }
 
-    public double getRetail_transfers() {
-        return retail_transfers;
+    public double getRetailTransfers() {
+        return retailTransfers;
     }
 
-    public void setRetail_transfers(double retail_transfers) {
-        this.retail_transfers = retail_transfers;
+    public void setRetailTransfers(double retailTransfers) {
+        this.retailTransfers = retailTransfers;
     }
 
-    public double getWarehouse_sales() {
-        return warehouse_sales;
+    public double getWarehouseSales() {
+        return warehouseSales;
     }
 
-    public void setWarehouse_sales(double warehouse_sales) {
-        this.warehouse_sales = warehouse_sales;
+    public void setWarehouseSales(double warehouseSales) {
+        this.warehouseSales = warehouseSales;
     }
 
 }

@@ -9,13 +9,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * dient dazu...
+ * Genric method aggregating data like the groubBy operation in a database.
  * 
- * Annahmen und Voraussetzungen sind...
- * 
- * @param <T>
+ * Start with setSource(sourceDataList) method.
  */
-
 public class Aggregator<T> implements AggregatorTargetToBeSet, AggregatorGroupByStart, AggregatorGroupByStarted,
         AggregatorAttributeSet, AggregatorOperationSet, AggregatorAttributeTargetSet {
 
@@ -29,6 +26,13 @@ public class Aggregator<T> implements AggregatorTargetToBeSet, AggregatorGroupBy
 
     private String lastAttr;
 
+    /**
+     * Set the source data for the aggregation.
+     * 
+     * @param sourceList
+     *            A list of objects which need to be aggregated
+     * @return Returns an interface of AggregatorTargetToBeSet so the target class name can be set.
+     */
     public AggregatorTargetToBeSet setSource(List<T> sourceList) {
         this.sourceList = sourceList;
         return this;
@@ -149,8 +153,6 @@ public class Aggregator<T> implements AggregatorTargetToBeSet, AggregatorGroupBy
             // execute Operations
             for (Entry<String, Entry<String, String>> oper : operList.entrySet()) {
 
-                int objectCounter = 0;
-
                 String op = oper.getValue().getKey();
                 op.toLowerCase();
 
@@ -174,6 +176,8 @@ public class Aggregator<T> implements AggregatorTargetToBeSet, AggregatorGroupBy
                 }
 
                 sourceField = sClass.getDeclaredField(oper.getKey());
+
+                int objectCounter = 0;
 
                 // iterate through group members
                 for (Object listElem : entry.getValue()) {

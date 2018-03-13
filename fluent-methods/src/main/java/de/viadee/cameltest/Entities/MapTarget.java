@@ -6,44 +6,44 @@ public class MapTarget {
 
     public int month;
 
-    public Integer date_id;
+    public Integer dateId;
 
     public String supplier;
 
-    public Integer supplier_id;
+    public Integer supplierId;
 
-    public String item_co;
+    public String itemCo;
 
-    public String item_description;
+    public String itemDescription;
 
-    public String item_ty;
+    public String itemTy;
 
-    public Integer item_id;
+    public Integer itemId;
 
-    public double retail_sales;
+    public double retailSales;
 
-    public double retail_transfers;
+    public double retailTransfers;
 
-    public double warehouse_sales;
+    public double warehouseSales;
 
     public MapTarget() {
     }
 
-    public MapTarget(int year, int month, Integer date_id, String supplier, Integer supplier_id, String item_code,
-            String item_description, String item_type, Integer item_id, double retail_sales, double retail_transfers,
-            double warehouse_sales) {
+    public MapTarget(int year, int month, Integer dateId, String supplier, Integer supplierId, String itemCo,
+            String itemDescription, String itemTy, Integer itemId, double retailSales, double retailTransfers,
+            double warehouseSales) {
         this.year = year;
         this.month = month;
-        this.date_id = date_id;
+        this.dateId = dateId;
         this.supplier = supplier;
-        this.supplier_id = supplier_id;
-        this.item_co = item_code;
-        this.item_description = item_description;
-        this.item_ty = item_type;
-        this.item_id = item_id;
-        this.retail_sales = retail_sales;
-        this.retail_transfers = retail_transfers;
-        this.warehouse_sales = warehouse_sales;
+        this.supplierId = supplierId;
+        this.itemCo = itemCo;
+        this.itemDescription = itemDescription;
+        this.itemTy = itemTy;
+        this.itemId = itemId;
+        this.retailSales = retailSales;
+        this.retailTransfers = retailTransfers;
+        this.warehouseSales = warehouseSales;
     }
 
     public int getYear() {
@@ -62,12 +62,12 @@ public class MapTarget {
         this.month = month;
     }
 
-    public Integer getDate_id() {
-        return date_id;
+    public Integer getDateId() {
+        return dateId;
     }
 
-    public void setDate_id(Integer l) {
-        this.date_id = l;
+    public void setDateId(Integer dateId) {
+        this.dateId = dateId;
     }
 
     public String getSupplier() {
@@ -78,68 +78,68 @@ public class MapTarget {
         this.supplier = supplier;
     }
 
-    public Integer getSupplier_id() {
-        return supplier_id;
+    public Integer getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier_id(Integer supplier_id) {
-        this.supplier_id = supplier_id;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public String getItem_co() {
-        return item_co;
+    public String getItemCo() {
+        return itemCo;
     }
 
-    public void setItem_co(String item_co) {
-        this.item_co = item_co;
+    public void setItemCo(String itemCo) {
+        this.itemCo = itemCo;
     }
 
-    public String getItem_description() {
-        return item_description;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setItem_description(String item_description) {
-        this.item_description = item_description;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    public String getItem_ty() {
-        return item_ty;
+    public String getItemTy() {
+        return itemTy;
     }
 
-    public void setItem_ty(String item_ty) {
-        this.item_ty = item_ty;
+    public void setItemTy(String itemTy) {
+        this.itemTy = itemTy;
     }
 
-    public Integer getItem_id() {
-        return item_id;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(Integer item_id) {
-        this.item_id = item_id;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
-    public double getRetail_sales() {
-        return retail_sales;
+    public double getRetailSales() {
+        return retailSales;
     }
 
-    public void setRetail_sales(double retail_sales) {
-        this.retail_sales = retail_sales;
+    public void setRetailSales(double retailSales) {
+        this.retailSales = retailSales;
     }
 
-    public double getRetail_transfers() {
-        return retail_transfers;
+    public double getRetailTransfers() {
+        return retailTransfers;
     }
 
-    public void setRetail_transfers(double retail_transfers) {
-        this.retail_transfers = retail_transfers;
+    public void setRetailTransfers(double retailTransfers) {
+        this.retailTransfers = retailTransfers;
     }
 
-    public double getWarehouse_sales() {
-        return warehouse_sales;
+    public double getWarehouseSales() {
+        return warehouseSales;
     }
 
-    public void setWarehouse_sales(double warehouse_sales) {
-        this.warehouse_sales = warehouse_sales;
+    public void setWarehouseSales(double warehouseSales) {
+        this.warehouseSales = warehouseSales;
     }
 
 }

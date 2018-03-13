@@ -23,20 +23,20 @@ public class MapperTest {
             MapTarget myMapTarget = (MapTarget) mapper.source(sourceObject)
                     .setTarget(MapTarget.class.getName())
                     .byName()
-                    .left("item_type").right("item_ty")
+                    .left("itemType").right("itemTy")
                     .run();
 
-            assertNull(myMapTarget.getItem_co());
+            assertNull(myMapTarget.getItemCo());
 
             assertEquals(myMapTarget.getYear(), sourceObject.getYear());
             assertEquals(myMapTarget.getMonth(), sourceObject.getMonth());
-            assertEquals(myMapTarget.getItem_ty(), sourceObject.getItem_type());
-            assertEquals(myMapTarget.getItem_description(), sourceObject.getItem_description());
+            assertEquals(myMapTarget.getItemTy(), sourceObject.getItemType());
+            assertEquals(myMapTarget.getItemDescription(), sourceObject.getItemDescription());
             assertEquals(myMapTarget.getSupplier(), sourceObject.getSupplier());
 
-            assertEquals(myMapTarget.getRetail_sales(), sourceObject.getRetail_sales(), 0);
-            assertEquals(myMapTarget.getRetail_transfers(), sourceObject.getRetail_transfers(), 0);
-            assertEquals(myMapTarget.getWarehouse_sales(), sourceObject.getWarehouse_sales(), 0);
+            assertEquals(myMapTarget.getRetailSales(), sourceObject.getRetailSales(), 0);
+            assertEquals(myMapTarget.getRetailTransfers(), sourceObject.getRetailTransfers(), 0);
+            assertEquals(myMapTarget.getWarehouseSales(), sourceObject.getWarehouseSales(), 0);
 
         } catch (InstantiationException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
             throw new RuntimeException(e);
