@@ -12,7 +12,7 @@
     <relativePath>../../camel-reference/examples/pom.xml</relativePath>
   </parent>
 
-  <artifactId>camel-etl-stream-jpa</artifactId>
+  <artifactId>camel-etl-stream-jpa-find-error</artifactId>
   <name>MyCamelSpringProject</name>
   <description>No description</description>
 

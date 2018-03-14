@@ -12,7 +12,7 @@
     <relativePath>../../camel-reference/examples/pom.xml</relativePath>
   </parent>
 
-  <artifactId>camel-etl-stream-jpa</artifactId>
+  <artifactId>camel-etl-batch-jpa-add-function</artifactId>
   <name>MyCamelSpringProject</name>
   <description>No description</description>
 
@@ -106,6 +106,16 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    
+	<dependency>
+	  <groupId>commons-logging</groupId>
+	  <artifactId>commons-logging</artifactId>
+	</dependency>
+	<dependency>
+	  <groupId>log4j</groupId>
+	  <artifactId>log4j</artifactId>
+	</dependency>
 
   </dependencies>
 

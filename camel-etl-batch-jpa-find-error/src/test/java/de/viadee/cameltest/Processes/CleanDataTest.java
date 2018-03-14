@@ -39,7 +39,7 @@ public class CleanDataTest {
         CleanData cleanData = new CleanData();
         FullDataWithIds testData = new FullDataWithIds();
 
-        testData.setItemDescription("  Der äußerliche Schein könnte trügen.     ");
+        testData.setItemDescription(" Der äußerliche Schein könnte trügen. ");
         cleanData.trimAndExchange(testData);
 
         assertEquals(testData.getItemDescription(), "Der aeusserliche Schein koennte truegen.");

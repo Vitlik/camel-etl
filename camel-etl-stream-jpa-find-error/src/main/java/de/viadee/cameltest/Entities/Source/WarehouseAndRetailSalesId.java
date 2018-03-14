@@ -2,7 +2,6 @@ package de.viadee.cameltest.Entities.Source;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class WarehouseAndRetailSalesId implements Serializable {
 
     private int year;

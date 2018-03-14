@@ -12,7 +12,7 @@
     <relativePath>../../camel-reference/examples/pom.xml</relativePath>
   </parent>
 
-  <artifactId>camel-spring-etl-stream</artifactId>
+  <artifactId>camel-etl-batch-jpa</artifactId>
   <name>MyCamelSpringProject</name>
   <description>No description</description>
 
