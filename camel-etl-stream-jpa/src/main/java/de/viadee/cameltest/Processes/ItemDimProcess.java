@@ -31,13 +31,11 @@ public class ItemDimProcess implements Processor {
         DimItem dimItem = itemRepo.findByTypeAndCodeAndDescription(row.getItemType(), row.getItemCode(),
                 row.getItemDescription());
 
-        if (dimItem != null) {
-            row.setItemId(dimItem.getId());
-        } else {
+        if (dimItem == null) {
             dimItem = new DimItem(row.getItemType(), row.getItemCode(), row.getItemDescription());
             itemRepo.saveAndFlush(dimItem);
-            row.setItemId(dimItem.getId());
         }
+        row.setItemId(dimItem.getId());
 
         exchange.getOut().setBody(row);
     }

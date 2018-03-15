@@ -30,13 +30,11 @@ public class DateDimProcess implements Processor {
 
         DimDate dimDate = dateRepo.findByYearAndMonth(row.getYear(), row.getMonth());
 
-        if (dimDate != null) {
-            row.setDateId(dimDate.getId());
-        } else {
+        if (dimDate == null) {
             dimDate = new DimDate(row.getYear(), row.getMonth(), null);
             dateRepo.saveAndFlush(dimDate);
-            row.setDateId(dimDate.getId());
         }
+        row.setDateId(dimDate.getId());
 
         exchange.getOut().setBody(row);
     }

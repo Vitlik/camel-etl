@@ -32,13 +32,11 @@ public class SupplierDimProcessList implements Processor {
 
             DimSupplier dimSupplier = supplierRepo.findByName(row.getSupplier());
 
-            if (dimSupplier != null) {
-                row.setSupplierId(dimSupplier.getId());
-            } else {
+            if (dimSupplier == null) {
                 dimSupplier = new DimSupplier(row.getSupplier());
                 supplierRepo.saveAndFlush(dimSupplier);
-                row.setSupplierId(dimSupplier.getId());
             }
+            row.setSupplierId(dimSupplier.getId());
         }
 
         exchange.getOut().setBody(dataList);

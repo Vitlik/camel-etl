@@ -61,8 +61,6 @@ public class Application extends SpringBootServletInitializer {
                     .process(supplierDimProcess)
                     .process(writeFacts)
 
-                    // .log("Processed ${body.year} ${body.month} ${body.supplier} ${body.itemCode}
-                    // ${body.itemType} ${body.itemDescription} ")
                     .log("Finished route.");
         }
     }

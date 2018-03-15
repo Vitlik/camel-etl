@@ -28,15 +28,15 @@ public class WriteFacts implements Processor {
         FactSales factDataDB = factRepo.findByDateIdAndSupplierIdAndItemId(saleWithIds.getDateId(),
                 saleWithIds.getSupplierId(), saleWithIds.getItemId());
 
-        FactSales factData = new FactSales();
+        if (factDataDB == null) {
+            FactSales factData = new FactSales();
 
-        BeanUtils.copyProperties(saleWithIds, factData);
+            BeanUtils.copyProperties(saleWithIds, factData);
 
-        if (factDataDB != null) {
+            factRepo.saveAndFlush(factData);
+
+        } else {
             LOGGER.debug("Fact already existing. ");
-            return;
         }
-
-        factRepo.saveAndFlush(factData);
     }
 }

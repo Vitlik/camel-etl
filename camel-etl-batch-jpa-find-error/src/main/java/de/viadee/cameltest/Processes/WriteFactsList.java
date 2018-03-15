@@ -33,16 +33,13 @@ public class WriteFactsList implements Processor {
             FactSales factDataDB = factRepo.findByDateIdAndSupplierIdAndItemId(saleWithIds.getDateId(),
                     saleWithIds.getSupplierId(), saleWithIds.getItemId());
 
-            FactSales factData = new FactSales();
-
-            BeanUtils.copyProperties(saleWithIds, factData);
-
-            if (factDataDB != null) {
+            if (factDataDB == null) {
+                FactSales factData = new FactSales();
+                BeanUtils.copyProperties(saleWithIds, factData);
+                factRepo.saveAndFlush(factData);
+            } else {
                 LOGGER.debug("Fact already existing. ");
-                continue;
             }
-
-            factRepo.saveAndFlush(factData);
         }
     }
 }

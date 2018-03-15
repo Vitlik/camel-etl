@@ -25,7 +25,7 @@ public class CleanDataTest {
         cleanData.process(ex);
         FullDataWithIds newData = ex.getOut().getBody(FullDataWithIds.class);
 
-        assertEquals(newData.getItemDescription(), "Der aeusserliche Schein koennte truegen.");
+        assertEquals("Der aeusserliche Schein koennte truegen.", newData.getItemDescription());
     }
 
     @Test
@@ -33,10 +33,10 @@ public class CleanDataTest {
         CleanData cleanData = new CleanData();
         FullDataWithIds testData = new FullDataWithIds();
 
-        testData.setItemDescription(" Der äußerliche Schein könnte trügen. ");
+        testData.setItemDescription("  Der äußerliche Schein könnte trügen.     ");
         cleanData.trimAndExchange(testData);
 
-        assertEquals(testData.getItemDescription(), "Der aeusserliche Schein koennte truegen.");
+        assertEquals("Der aeusserliche Schein koennte truegen.", testData.getItemDescription());
     }
 
 }
