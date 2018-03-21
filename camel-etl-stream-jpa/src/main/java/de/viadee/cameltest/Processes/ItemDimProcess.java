@@ -31,6 +31,11 @@ public class ItemDimProcess implements Processor {
         DimItem dimItem = itemRepo.findByTypeAndCodeAndDescription(row.getItemType(), row.getItemCode(),
                 row.getItemDescription());
 
+        // comment previous line and uncomment next two lines for producing a technical error (exception)
+        // which can be found with executing the application and studying the stacktrace
+        // String tmp = new String(new char[10]).replace("\0", row.getItemDescription());
+        // DimItem dimItem = itemRepo.findByTypeAndCodeAndDescription(row.getItemType(), row.getItemCode(), tmp);
+
         if (dimItem == null) {
             dimItem = new DimItem(row.getItemType(), row.getItemCode(), row.getItemDescription());
             itemRepo.saveAndFlush(dimItem);

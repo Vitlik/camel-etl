@@ -30,6 +30,9 @@ public class CleanData implements Processor {
         toClean = toClean.replaceAll("ä", "ae");
         toClean = toClean.replaceAll("ö", "oe");
         toClean = toClean.replaceAll("ü", "ue");
+        // comment previous line and uncomment next line for producing a functional error
+        // which can be found with the unit tests
+        // toClean = toClean.replaceAll("ö", "ue");
         data.setItemDescription(toClean);
     }
 }
